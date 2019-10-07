@@ -1,2 +1,3 @@
 import pygame
-import config as cfg
+
+def SetWall(screen, pos)
