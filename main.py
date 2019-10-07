@@ -1,8 +1,7 @@
 #Jack Chambers
-import pygame
+import pygame, Tiles
 
 #Map Options and Variables
-#Map Can Be Customized Here
 map = [
 "#####",
 "#---#",
@@ -15,6 +14,9 @@ map = [
 tileSize = 50
 wallColor = (0,0,0)
 floorColor = (0,0,0)
+
+#Initialization
+pygame.init()
 
 #Variables
 mapWidth = len(map[0])
@@ -32,8 +34,8 @@ for row in map:
   mapColumn = 0
   for char in row:
     if char == "#":
-      Tiles.SetWall()
+      Tiles.SetWall(screen, wallColor, (mapRow, mapColumn), tileSize)
     if char == "-":
-      Tiles.SetFloor()
+      Tiles.SetFloor(screen, floorColor, (mapRow, mapColumn), tileSize)
      
     mapColumn += 1
