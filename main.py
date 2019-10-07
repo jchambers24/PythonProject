@@ -1,5 +1,5 @@
 #Jack Chambers
-import pygame, Tiles
+import pygame
 
 #Map Options and Variables
 map = [
@@ -33,9 +33,10 @@ for row in map:
   mapRow += 1
   mapColumn = 0
   for char in row:
+    rectangle = pygame.Rect((0,0),(mapColumn*tileSize,mapRow*tileSize))
     if char == "#":
-      Tiles.SetWall(screen, wallColor, (mapRow, mapColumn), tileSize)
+      pygame.draw.rect(screen, wallColor, rectangle)
     if char == "-":
-      Tiles.SetFloor(screen, floorColor, (mapRow, mapColumn), tileSize)
+      pygame.draw.rect(screen, floorColor, rectangle)
      
     mapColumn += 1
