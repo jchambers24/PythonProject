@@ -1,42 +1,53 @@
 #Jack Chambers
 import pygame
+pygame.init()
 
 #Map Options and Variables
-map = [
-"#####",
-"#---#",
-"##--#",
-"#---#",
-"#--##",
-"#####",
+mapArray = [
+"###########",
+"#---#--##-#",
+"##--##-##-#",
+"#----#-##-#",
+"#-##---##-#",
+"###########",
 ]
 
-tileSize = 50
+tileSize = 25
 wallColor = (0,0,0)
-floorColor = (0,0,0)
+floorColor = (255,255,255)
 
 #Initialization
 pygame.init()
 
 #Variables
-mapWidth = len(map[0])
-mapHeight = len(map)
-mapRow = 0
+fps = 60
+mapWidth = len(mapArray[0])
+mapHeight = len(mapArray)
+mapRow = -1
 mapColumn = 0
 
 #Pygame Window Fooey
 screen = pygame.display.set_mode((mapWidth*tileSize, mapHeight*tileSize))
 pygame.display.set_caption("Jacks Game")
+clock = pygame.time.Clock()
 
 #Main Program
-for row in map:
+screen.fill((255,255,255))
+for row in mapArray:
   mapRow += 1
   mapColumn = 0
   for char in row:
-    rectangle = pygame.Rect((0,0),(mapColumn*tileSize,mapRow*tileSize))
+    rectangle = pygame.Rect((mapColumn*tileSize,mapRow*tileSize), (tileSize, tileSize))
     if char == "#":
       pygame.draw.rect(screen, wallColor, rectangle)
     if char == "-":
       pygame.draw.rect(screen, floorColor, rectangle)
-     
+    
     mapColumn += 1
+  
+while True:
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      exit();
+  clock.tick(fps)
+  pygame.display.flip()
