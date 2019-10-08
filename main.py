@@ -5,16 +5,24 @@ pygame.init()
 #Map Options and Variables
 mapArray = [
 "###########",
-"#---#--##-#",
-"##--##-##-#",
-"#----#-##-#",
-"#-##---##-#",
+"#@#####$--#",
+"#-##--###-#",
+"#-#--###--#",
+"#-----###-#",
+"#----###--#",
+"##--------#",
+"######----#",
+"#---####--#",
 "###########",
+
 ]
 
 tileSize = 25
+bgColor = (255,255,255)
 wallColor = (0,0,0)
 floorColor = (255,255,255)
+startColor = (0,255,0)
+endColor = (255,0,0)
 
 #Initialization
 pygame.init()
@@ -32,7 +40,7 @@ pygame.display.set_caption("Jacks Game")
 clock = pygame.time.Clock()
 
 #Main Program
-screen.fill((255,255,255))
+screen.fill(bgColor)
 for row in mapArray:
   mapRow += 1
   mapColumn = 0
@@ -42,6 +50,10 @@ for row in mapArray:
       pygame.draw.rect(screen, wallColor, rectangle)
     if char == "-":
       pygame.draw.rect(screen, floorColor, rectangle)
+    if char == "@":
+      pygame.draw.rect(screen, startColor, rectangle)
+    if char == "$":
+      pygame.draw.rect(screen, endColor, rectangle)
     
     mapColumn += 1
   
